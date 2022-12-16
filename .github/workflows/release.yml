@@ -1,12 +1,16 @@
 name: Release
 
 on:
-  release:
-    types: [ created ]
+  push:
+    branches:
+      - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -16,12 +20,18 @@ jobs:
         with:
           node-version: 16
           cache: 'yarn'
+          registry-url: https://registry.npmjs.org
 
       - name: Install Dependencies
         run: yarn install --immutable
 
       - name: Build
         run: yarn build
+
+      - name: Publish to NPM
+        run: yarn semantic-release --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
 #  publish-gpr:
 #    needs: build
@@ -53,26 +63,26 @@ jobs:
 #        env:
 #          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
-  publish-npm:
-    needs: build
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Setup Node Env
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16
-          cache: 'yarn'
-          registry-url: https://registry.npmjs.org
-
-      - name: Install Dependencies
-        run: yarn install --immutable
-
-      - name: Publish to NPM
-        run: yarn semantic-release --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+#  publish-npm:
+#    needs: build
+#    runs-on: ubuntu-latest
+#    permissions:
+#      contents: read
+#      packages: write
+#    steps:
+#      - uses: actions/checkout@v3
+#
+#      - name: Setup Node Env
+#        uses: actions/setup-node@v3
+#        with:
+#          node-version: 16
+#          cache: 'yarn'
+#          registry-url: https://registry.npmjs.org
+#
+#      - name: Install Dependencies
+#        run: yarn install --immutable
+#
+#      - name: Publish to NPM
+#        run: yarn semantic-release --access public
+#        env:
+#          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
