@@ -70,7 +70,7 @@ jobs:
       - name: Install Dependencies
         run: yarn install --immutable
 
-      - name: Publish to GitHub Packages
-        run: npm publish --access public
+      - name: Publish to NPM
+        run: yarn semantic-release
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
