@@ -1,4 +1,4 @@
-# @joelpierre/use-breakpoint
+# react-use-breakpoint
 
 ## Rational
 A React hook to get the current breakpoint via the MatchMedia API. Tiny, fast, and easy to use. I created this as I found myself copying this bad boy around every project I did... so I figured I'd make it a package. Other plugins out there are not exactly what I needed, and although I think getting breakpoints in JS should be a **last resort**. There is undoubtedly a time and place for it. Especially as designers design more creative layouts that are not easily achievable with CSS alone.
