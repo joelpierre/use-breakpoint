@@ -1,5 +1,5 @@
 {
-  "name": "use-breakpoint",
+  "name": "@joelpeirre/use-breakpoint",
   "version": "0.0.0-development",
   "description": "Use breakpoints in JS when dealing with React based applications",
   "main": "dist/index.js",
@@ -14,8 +14,8 @@
     "lint:fix": "yarn run prettier:fix && yarn run eslint:fix",
     "eslint": "eslint --cache ./src",
     "eslint:fix": "yarn run eslint --fix",
-    "prettier:check": "prettier --check .",
-    "prettier:fix": "prettier --write .",
+    "prettier:check": "prettier --check ./src",
+    "prettier:fix": "prettier --write ./src",
     "typecheck": "tsc --noEmit",
     "size": "size-limit",
     "semantic-release": "semantic-release"
@@ -34,6 +34,12 @@
         "name": "next",
         "prerelease": true
       }
+    ]
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx}": [
+      "prettier --write",
+      "eslint --cache --fix"
     ]
   },
   "publishConfig": {
@@ -62,6 +68,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-unused-imports": "^2.0.0",
     "husky": "8.0.2",
+    "lint-staged": "^13.1.0",
     "prettier": "^2.8.1",
     "react": "^18.2.0",
     "rimraf": "^3.0.2",
