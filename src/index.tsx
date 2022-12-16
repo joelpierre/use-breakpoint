@@ -138,10 +138,15 @@ export function useBreakPoint(key: keyof typeof defaultContext): TBreakPoint;
 export function useBreakPoint(key?: undefined): typeof defaultContext;
 export function useBreakPoint(key?: keyof typeof defaultContext) {
   const context = useContext(BreakPointContext);
+  if (context === undefined) {
+    throw new Error(
+      'useBreakPoint must be used within a BreakpointProvider. Wrap your app in a BreakpointProvider',
+    );
+  }
   return key ? context[key] : context;
 }
 
-export const BreakPointProvider: FC<{
+export const BreakpointProvider: FC<{
   children: ReactNode;
   breakpointOptions?: TBreakpointOptions;
 }> = ({ children, breakpointOptions }) => {
