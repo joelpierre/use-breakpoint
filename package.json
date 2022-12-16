@@ -1,6 +1,6 @@
 {
-  "name": "@joelpeirre/use-breakpoint",
-  "version": "0.0.0-development",
+  "name": "react-use-breakpoint",
+  "version": "1.0.5",
   "description": "Use breakpoints in JS when dealing with React based applications",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -79,8 +79,7 @@
   },
   "packageManager": "yarn@3.3.0",
   "publishConfig": {
-    "access": "public",
-    "registry": "https://npm.pkg.github.com"
+    "access": "public"
   },
   "repository": {
     "type": "git",
