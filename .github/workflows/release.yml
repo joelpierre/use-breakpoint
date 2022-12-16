@@ -1,18 +1,15 @@
 name: Release
+
 on:
+  release:
+    types: [ created ]
   push:
     branches:
       - main
 
-env:
-  NODE_VERSION: '16.14.0'
-
 jobs:
-  release:
-    name: Build & Release
-    runs-on: ubuntu-18.04
-    permissions:
-      packages: write
+  build:
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -20,7 +17,7 @@ jobs:
       - name: Setup Node Env
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ env.NODE_VERSION }}
+          node-version: 16
           cache: 'yarn'
 
       - name: Install Dependencies
@@ -29,9 +26,26 @@ jobs:
       - name: Build
         run: yarn build
 
-      - name: Release
+  publish-gpr:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Node Env
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'yarn'
+          registry-url: https://npm.pkg.github.com/
+
+      - name: Install Dependencies
+        run: yarn install --immutable
+
+      - name: Publish to GitHub Packages
+        run: yarn publish --access public
         env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: yarn semantic-release
+          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}

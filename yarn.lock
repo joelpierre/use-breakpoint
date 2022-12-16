@@ -320,6 +320,40 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@joelpierre/use-breakpoint@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "@joelpierre/use-breakpoint@workspace:."
+  dependencies:
+    "@commitlint/cli": ^17.3.0
+    "@commitlint/config-conventional": ^17.3.0
+    "@size-limit/file": ^8.1.0
+    "@types/node": ^18.11.15
+    "@types/react": ^18.0.26
+    "@typescript-eslint/eslint-plugin": ^5.46.1
+    "@typescript-eslint/parser": ^5.46.1
+    eslint: ^8.29.0
+    eslint-config-prettier: ^8.5.0
+    eslint-module-utils: ^2.7.4
+    eslint-plugin-eslint-plugin: ^5.0.6
+    eslint-plugin-import: ^2.26.0
+    eslint-plugin-jsx-a11y: ^6.6.1
+    eslint-plugin-prettier: ^4.2.1
+    eslint-plugin-react: ^7.31.11
+    eslint-plugin-react-hooks: ^4.6.0
+    eslint-plugin-unused-imports: ^2.0.0
+    husky: 8.0.2
+    lint-staged: ^13.1.0
+    prettier: ^2.8.1
+    react: ^18.2.0
+    rimraf: ^3.0.2
+    semantic-release: ^19.0.5
+    size-limit: ^8.1.0
+    typescript: ^4.9.4
+  peerDependencies:
+    react: ">16"
+  languageName: unknown
+  linkType: soft
+
 "@jridgewell/resolve-uri@npm:^3.0.3":
   version: 3.1.0
   resolution: "@jridgewell/resolve-uri@npm:3.1.0"
@@ -2321,26 +2355,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-import-resolver-node@npm:^0.3.2, eslint-import-resolver-node@npm:^0.3.6":
+"eslint-import-resolver-node@npm:^0.3.6":
   version: 0.3.6
   resolution: "eslint-import-resolver-node@npm:0.3.6"
   dependencies:
     debug: ^3.2.7
     resolve: ^1.20.0
   checksum: 6266733af1e112970e855a5bcc2d2058fb5ae16ad2a6d400705a86b29552b36131ffc5581b744c23d550de844206fb55e9193691619ee4dbf225c4bde526b1c8
-  languageName: node
-  linkType: hard
-
-"eslint-import-resolver-root-import@npm:^1.0.4":
-  version: 1.0.4
-  resolution: "eslint-import-resolver-root-import@npm:1.0.4"
-  dependencies:
-    eslint-import-resolver-node: ^0.3.2
-    json5: ^2.1.0
-  peerDependencies:
-    babel-plugin-root-import: ^5.1.0
-    eslint-plugin-import: ">=1.9.2"
-  checksum: 953cfb86a394cc33f5e1bb2b6740b3222123ca843ad00ce7988e8dc61d8f4b2bbb545c3322fdae82916883571f7b572791f0d0b9a6c29f52b675058375bc00eb
   languageName: node
   linkType: hard
 
@@ -3773,15 +3794,6 @@ __metadata:
   bin:
     json5: lib/cli.js
   checksum: e76ea23dbb8fc1348c143da628134a98adf4c5a4e8ea2adaa74a80c455fc2cdf0e2e13e6398ef819bfe92306b610ebb2002668ed9fc1af386d593691ef346fc3
-  languageName: node
-  linkType: hard
-
-"json5@npm:^2.1.0":
-  version: 2.2.2
-  resolution: "json5@npm:2.2.2"
-  bin:
-    json5: lib/cli.js
-  checksum: 9a878d66b72157b073cf0017f3e5d93ec209fa5943abcb38d37a54b208917c166bd473c26a24695e67a016ce65759aeb89946592991f8f9174fb96c8e2492683
   languageName: node
   linkType: hard
 
@@ -5520,41 +5532,6 @@ __metadata:
   checksum: f7a19ac3496de32ca9ae12aa030f00f14a3d45374f1ceca0af707c831b2a6098ef0d6bdae51bd437b0a306d7f01d4677fcc8de7c0d331eb47ad0f46130e53c5f
   languageName: node
   linkType: hard
-
-"react-use-breakpoint@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "react-use-breakpoint@workspace:."
-  dependencies:
-    "@commitlint/cli": ^17.3.0
-    "@commitlint/config-conventional": ^17.3.0
-    "@size-limit/file": ^8.1.0
-    "@types/node": ^18.11.15
-    "@types/react": ^18.0.26
-    "@typescript-eslint/eslint-plugin": ^5.46.1
-    "@typescript-eslint/parser": ^5.46.1
-    eslint: ^8.29.0
-    eslint-config-prettier: ^8.5.0
-    eslint-import-resolver-root-import: ^1.0.4
-    eslint-module-utils: ^2.7.4
-    eslint-plugin-eslint-plugin: ^5.0.6
-    eslint-plugin-import: ^2.26.0
-    eslint-plugin-jsx-a11y: ^6.6.1
-    eslint-plugin-prettier: ^4.2.1
-    eslint-plugin-react: ^7.31.11
-    eslint-plugin-react-hooks: ^4.6.0
-    eslint-plugin-unused-imports: ^2.0.0
-    husky: 8.0.2
-    lint-staged: ^13.1.0
-    prettier: ^2.8.1
-    react: ^18.2.0
-    rimraf: ^3.0.2
-    semantic-release: ^19.0.5
-    size-limit: ^8.1.0
-    typescript: ^4.9.4
-  peerDependencies:
-    react: ">16"
-  languageName: unknown
-  linkType: soft
 
 "react@npm:^18.2.0":
   version: 18.2.0

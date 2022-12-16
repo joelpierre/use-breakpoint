@@ -2,11 +2,8 @@ name: CI
 
 on: [push]
 
-env:
-  NODE_VERSION: '16.14.0'
-
 jobs:
-  cache_persist:
+  ci:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
@@ -15,7 +12,7 @@ jobs:
       - name: Setup Node Env
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ env.NODE_VERSION }}
+          node-version: 16
           cache: 'yarn'
 
       - name: Install Dependencies
