@@ -4,10 +4,18 @@ A React hook to get the current breakpoint via the MatchMedia API. Tiny, fast, a
 
 ## Getting Started
 
+install the package
+
+```shell
+npm i react-use-breakpoint
+// or
+yarn add react-use-breakpoint
+```
+
 Wrap your apps root component with the `BreakpointProvider` component. This will provide the `useBreakpoint` hook to all child components.
 
 ```jsx
-import { BreakpointProvider } from 'use-breakpoint';
+import { BreakpointProvider } from 'react-use-breakpoint';
 
 const App = () => (
   <BreakpointProvider>
@@ -21,7 +29,7 @@ Within all child components you can then leverage the `useBreakpoint` hook to ge
 Specifying no arguments will return an object with min and max breakpoints `{ min: {...}, max: {...} }`.
 
 ```jsx
-import { useBreakpoint } from 'use-breakpoint';
+import { useBreakpoint } from 'react-use-breakpoint';
 
 const MyComponent = () => {
   const { min } = useBreakpoint();
@@ -34,7 +42,7 @@ const MyComponent = () => {
 if you specify a breakpoint "direction" (min or max) you will get an object with the current breakpoint and a boolean indicating if the current breakpoint is the specified breakpoint.
 
 ```jsx
-import { useBreakpoint } from 'use-breakpoint';
+import { useBreakpoint } from 'react-use-breakpoint';
 
 const MyComponent = () => {
   const { isXs, isSm, isMd } = useBreakpoint('min');
