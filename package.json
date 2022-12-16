@@ -43,10 +43,6 @@
       "eslint --cache --fix"
     ]
   },
-  "publishConfig": {
-    "access": "public",
-    "registry": "https://npm.pkg.github.com"
-  },
   "peerDependencies": {
     "react": ">16"
   },
@@ -82,6 +78,10 @@
     "node": ">=10"
   },
   "packageManager": "yarn@3.3.0",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://npm.pkg.github.com"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/joelpierre/use-breakpoint.git"
