@@ -73,6 +73,6 @@ jobs:
         run: yarn install --immutable
 
       - name: Publish to NPM
-        run: npm publish --access public
+        run: yarn semantic-release --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
