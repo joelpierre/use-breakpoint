@@ -6,7 +6,7 @@ env:
   NODE_VERSION: '16.14.0'
 
 jobs:
-  cache_persist:
+  ci:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
