@@ -3,9 +3,6 @@ name: Release
 on:
   release:
     types: [ created ]
-  push:
-    branches:
-      - main
 
 jobs:
   build:
@@ -41,10 +38,15 @@ jobs:
           node-version: 16
           cache: 'yarn'
           registry-url: https://npm.pkg.github.com/
-          scope: '@joelpierre'
 
       - name: Install Dependencies
         run: yarn install --immutable
+
+      - name: Change Package.json name property
+        uses: sergeysova/jq-action@v2
+        run: |
+          jq '.name = "@${{ github.repository_owner }}/${{ github.event.repository.name }}"' package.json > package.json.tmp
+          mv package.json.tmp package.json
 
       - name: Publish to GitHub Packages
         run: npm publish --access public
@@ -71,8 +73,6 @@ jobs:
         run: yarn install --immutable
 
       - name: Publish to NPM
-        run: yarn semantic-release
+        run: npm publish --access public
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
