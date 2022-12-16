@@ -1,6 +1,6 @@
 {
   "name": "use-breakpoint",
-  "version": "1.0.0",
+  "version": "0.0.0-development",
   "description": "Use breakpoints in JS when dealing with React based applications",
   "main": "dist/index.js",
   "files": [
@@ -17,7 +17,7 @@
     "prettier:fix": "prettier --write .",
     "typecheck": "tsc --noEmit",
     "size": "size-limit",
-    "release": "semantic-release"
+    "semantic-release": "semantic-release"
   },
   "author": "Joel Pierre",
   "license": "ISC",
@@ -68,5 +68,9 @@
   "engines": {
     "node": ">=10"
   },
-  "packageManager": "yarn@3.3.0"
+  "packageManager": "yarn@3.3.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/joelpierre/use-breakpoint.git"
+  }
 }
