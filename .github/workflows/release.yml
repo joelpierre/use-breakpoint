@@ -16,7 +16,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
-          token: ${{ secrets.GITHUB_TOKEN }}
+          persist-credentials: false
 
       - name: Setup Node Env
         uses: actions/setup-node@v3
@@ -35,8 +35,8 @@ jobs:
         run: yarn semantic-release --access public
         env:
           NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#          GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE }}
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE }}
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 #  publish-gpr:
