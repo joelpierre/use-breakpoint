@@ -1,7 +1,0 @@
-node_modules/
-dist/
-.eslintrc.js
-.idea
-.yarn
-prettier.config.js
-.prettierignore
