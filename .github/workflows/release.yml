@@ -32,7 +32,8 @@ jobs:
         run: yarn semantic-release --access public
         env:
           NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE }}
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 #  publish-gpr:
