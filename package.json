@@ -7,6 +7,7 @@
     "dist"
   ],
   "scripts": {
+    "prepare": "husky install",
     "prebuild": "rimraf dist",
     "build": "yarn prebuild && tsc -b",
     "lint": "yarn run prettier:check && yarn run eslint",
@@ -60,6 +61,7 @@
     "eslint-plugin-react": "^7.31.11",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-unused-imports": "^2.0.0",
+    "husky": "8.0.2",
     "prettier": "^2.8.1",
     "react": "^18.2.0",
     "rimraf": "^3.0.2",
