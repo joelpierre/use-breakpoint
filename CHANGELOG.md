@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/joelpierre/use-breakpoint/compare/v1.1.1...v1.1.2) (2022-12-17)
+
+
+### Bug Fixes
+
+* don't export types and consts that are not needed ([215d18a](https://github.com/joelpierre/use-breakpoint/commit/215d18a13ed4c54b04c936cb703b4d1be1d13731))
+
 ## [1.1.1](https://github.com/joelpierre/use-breakpoint/compare/v1.1.0...v1.1.1) (2022-12-17)
 
 
