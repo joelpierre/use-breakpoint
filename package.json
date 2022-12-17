@@ -41,17 +41,7 @@
       "@semantic-release/release-notes-generator",
       "@semantic-release/changelog",
       "@semantic-release/npm",
-      [
-        "@semantic-release/github",
-        {
-          "assets": [
-            {
-              "path": "dist/**/*.{js,d.ts}",
-              "label": "ReactUseBreakpoint Distribution"
-            }
-          ]
-        }
-      ],
+      "@semantic-release/github",
       [
         "@semantic-release/git",
         {
