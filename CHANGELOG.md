@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/joelpierre/use-breakpoint/compare/v1.1.0...v1.1.1) (2022-12-17)
+
+
+### Bug Fixes
+
+* rename github release package assets ([5cb85e4](https://github.com/joelpierre/use-breakpoint/commit/5cb85e45891b9225ffaf7020b6c6760de60d7fe3))
+
 # [1.1.0](https://github.com/joelpierre/use-breakpoint/compare/v1.0.9...v1.1.0) (2022-12-17)
 
 
