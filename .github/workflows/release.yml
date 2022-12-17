@@ -32,10 +32,10 @@ jobs:
         run: yarn build
 
       - name: Publish to NPM
-        run: NPM_TOKEN=${{ secrets.SEMVER_RELEASE }} yarn semantic-release --access public
         env:
-          NPM_TOKEN: ${{ secrets.SEMVER_RELEASE }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE }}
+        run: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc && yarn semantic-release --access public
 
 #  publish-gpr:
 #    needs: build
