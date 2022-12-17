@@ -1,3 +1,15 @@
+# [1.1.0](https://github.com/joelpierre/use-breakpoint/compare/v1.0.9...v1.1.0) (2022-12-17)
+
+
+### Bug Fixes
+
+* release workflow ([416b127](https://github.com/joelpierre/use-breakpoint/commit/416b127d13c8c048cad0b455c73f7ba85e4d5377))
+
+
+### Features
+
+* add github release push ([065da61](https://github.com/joelpierre/use-breakpoint/commit/065da61dda880f1a5c17b775bc5012b7873070ec))
+
 ## [1.0.9](https://github.com/joelpierre/use-breakpoint/compare/v1.0.8...v1.0.9) (2022-12-17)
 
 
