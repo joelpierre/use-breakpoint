@@ -6,7 +6,8 @@ on:
       - main
 
 jobs:
-  build:
+  publish-npm:
+    needs: build
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -33,62 +34,6 @@ jobs:
 
       - name: Publish to NPM
         env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-          GH_TOKEN: ${{ secrets.SEMANTIC_RELEASE }}
           GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE }}
         run: yarn semantic-release --access public
-
-#  publish-gpr:
-#    needs: build
-#    runs-on: ubuntu-latest
-#    permissions:
-#      contents: read
-#      packages: write
-#    steps:
-#      - uses: actions/checkout@v3
-#
-#      - name: Setup Node Env
-#        uses: actions/setup-node@v3
-#        with:
-#          node-version: 16
-#          cache: 'yarn'
-#          registry-url: https://npm.pkg.github.com/
-#
-#      - name: Install Dependencies
-#        run: yarn install --immutable
-#
-#      - name: Change Package.json name property
-#        uses: sergeysova/jq-action@v2
-#        run: |
-#          jq '.name = "@${{ github.repository_owner }}/${{ github.event.repository.name }}"' package.json > package.json.tmp
-#          mv package.json.tmp package.json
-#
-#      - name: Publish to GitHub Packages
-#        run: npm publish --access public
-#        env:
-#          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
-
-#  publish-npm:
-#    needs: build
-#    runs-on: ubuntu-latest
-#    permissions:
-#      contents: read
-#      packages: write
-#    steps:
-#      - uses: actions/checkout@v3
-#
-#      - name: Setup Node Env
-#        uses: actions/setup-node@v3
-#        with:
-#          node-version: 16
-#          cache: 'yarn'
-#          registry-url: https://registry.npmjs.org
-#
-#      - name: Install Dependencies
-#        run: yarn install --immutable
-#
-#      - name: Publish to NPM
-#        run: yarn semantic-release --access public
-#        env:
-#          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

@@ -968,7 +968,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@semantic-release/github@npm:^8.0.0":
+"@semantic-release/github@npm:^8.0.0, @semantic-release/github@npm:^8.0.7":
   version: 8.0.7
   resolution: "@semantic-release/github@npm:8.0.7"
   dependencies:
@@ -6409,6 +6409,7 @@ __metadata:
     "@commitlint/config-conventional": ^17.3.0
     "@semantic-release/changelog": ^6.0.2
     "@semantic-release/git": ^10.0.1
+    "@semantic-release/github": ^8.0.7
     "@size-limit/file": ^8.1.0
     "@types/node": ^18.11.15
     "@types/react": ^18.0.26

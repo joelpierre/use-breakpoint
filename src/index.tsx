@@ -1,6 +1,7 @@
 import React, {
   FC,
   ReactNode,
+  createContext,
   useContext,
   useEffect,
   useMemo,
@@ -14,18 +15,18 @@ export type ValueOf<
 
 export type TBreakpointDirection = 'min' | 'max';
 export type TBreakpointSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-export type TPageWidthSize = `${number}`;
+export type TPageWidthSize = `${string | number}`;
 type TMediaQueries = ValueOf<
   | ReturnType<typeof minMatchMediaQueries>
   | ReturnType<typeof maxMatchMediaQueries>
 >[];
 type TMediaMatches = boolean[];
-type TBreakpointOptions = Partial<{
-  xs: number;
-  sm: number;
-  md: number;
-  lg: number;
-  xl: number;
+type TBreakpointOverrides = Partial<{
+  xs: string | number;
+  sm: string | number;
+  md: string | number;
+  lg: string | number;
+  xl: string | number;
 }>;
 
 const mapBreakpointToPageWidthSize: Record<TBreakpointSize, TPageWidthSize> = {
@@ -42,7 +43,7 @@ export const minMatchMediaQueries = ({
   md,
   lg,
   xs,
-}: TBreakpointOptions = {}): Record<
+}: TBreakpointOverrides = {}): Record<
   TBreakpointSize,
   `(min-width: ${TPageWidthSize}px)`
 > => {
@@ -61,7 +62,7 @@ export const maxMatchMediaQueries = ({
   md,
   lg,
   xs,
-}: TBreakpointOptions = {}): Record<
+}: TBreakpointOverrides = {}): Record<
   TBreakpointSize,
   `(max-width: ${TPageWidthSize}px)`
 > => ({
@@ -131,8 +132,7 @@ const defaultContext: Record<TBreakpointDirection, TBreakPoint> = {
   },
 };
 
-const BreakPointContext =
-  React.createContext<typeof defaultContext>(defaultContext);
+const BreakPointContext = createContext<typeof defaultContext>(defaultContext);
 
 export function useBreakPoint(key: keyof typeof defaultContext): TBreakPoint;
 export function useBreakPoint(key?: undefined): typeof defaultContext;
@@ -148,15 +148,15 @@ export function useBreakPoint(key?: keyof typeof defaultContext) {
 
 export const BreakpointProvider: FC<{
   children: ReactNode;
-  breakpointOptions?: TBreakpointOptions;
-}> = ({ children, breakpointOptions }) => {
+  breakpointOverrides?: TBreakpointOverrides;
+}> = ({ children, breakpointOverrides }) => {
   const min = useMemo(
-    () => minMatchMediaQueries(breakpointOptions),
-    [breakpointOptions],
+    () => minMatchMediaQueries(breakpointOverrides),
+    [breakpointOverrides],
   );
   const max = useMemo(
-    () => maxMatchMediaQueries(breakpointOptions),
-    [breakpointOptions],
+    () => maxMatchMediaQueries(breakpointOverrides),
+    [breakpointOverrides],
   );
   const [minXs, minSm, minMd, minLg, minXl] = useMatchMedia(Object.values(min));
   const [maxXs, maxSm, maxMd, maxLg, maxXl] = useMatchMedia(Object.values(max));
