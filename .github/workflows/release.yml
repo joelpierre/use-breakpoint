@@ -34,6 +34,7 @@ jobs:
       - name: Publish to NPM
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GH_TOKEN: ${{ secrets.SEMANTIC_RELEASE }}
           GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE }}
         run: yarn semantic-release --access public
 
