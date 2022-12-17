@@ -1,3 +1,10 @@
+## [1.1.3](https://github.com/joelpierre/use-breakpoint/compare/v1.1.2...v1.1.3) (2022-12-17)
+
+
+### Bug Fixes
+
+* remove importHelpers and use commonjs ([82987c6](https://github.com/joelpierre/use-breakpoint/commit/82987c6845cd5792f2bcfb8fb308485b04249812))
+
 ## [1.1.2](https://github.com/joelpierre/use-breakpoint/compare/v1.1.1...v1.1.2) (2022-12-17)
 
 
