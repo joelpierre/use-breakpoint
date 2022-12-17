@@ -73,7 +73,9 @@ const useMatchMedia = (queries) => {
             }
             return list.removeListener(handleResize);
         });
-    }, [queries]);
+    }, 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    queries);
     return matches;
 };
 const defaultContext = {

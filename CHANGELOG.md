@@ -1,3 +1,10 @@
+## [1.1.4](https://github.com/joelpierre/use-breakpoint/compare/v1.1.3...v1.1.4) (2022-12-17)
+
+
+### Bug Fixes
+
+* consecutive re-renders ([94932ac](https://github.com/joelpierre/use-breakpoint/commit/94932ac960970e4e026d2fee9ed3e2d2afb9e111))
+
 ## [1.1.3](https://github.com/joelpierre/use-breakpoint/compare/v1.1.2...v1.1.3) (2022-12-17)
 
 
