@@ -8,14 +8,14 @@ import React, {
   useState,
 } from 'react';
 
-export type ValueOf<
+type ValueOf<
   ObjectType,
   ValueType extends keyof ObjectType = keyof ObjectType,
 > = ObjectType[ValueType];
 
 export type TBreakpointDirection = 'min' | 'max';
 export type TBreakpointSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-export type TPageWidthSize = `${string | number}`;
+type TPageWidthSize = `${string | number}`;
 type TMediaQueries = ValueOf<
   | ReturnType<typeof minMatchMediaQueries>
   | ReturnType<typeof maxMatchMediaQueries>
@@ -37,7 +37,7 @@ const mapBreakpointToPageWidthSize: Record<TBreakpointSize, TPageWidthSize> = {
   xl: '1440',
 };
 
-export const minMatchMediaQueries = ({
+const minMatchMediaQueries = ({
   xl,
   sm,
   md,
@@ -56,7 +56,7 @@ export const minMatchMediaQueries = ({
   };
 };
 
-export const maxMatchMediaQueries = ({
+const maxMatchMediaQueries = ({
   xl,
   sm,
   md,
