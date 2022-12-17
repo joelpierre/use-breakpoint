@@ -84,28 +84,32 @@ const useMatchMedia = (queries: TMediaQueries): TMediaMatches => {
     queries.map(() => false),
   );
 
-  useEffect(() => {
-    const mediaQueryList = queries.map(query => window.matchMedia(query));
-    const getMatch = () => mediaQueryList.map(mql => mql.matches);
-    const handleResize = () => setMatches(getMatch());
+  useEffect(
+    () => {
+      const mediaQueryList = queries.map(query => window.matchMedia(query));
+      const getMatch = () => mediaQueryList.map(mql => mql.matches);
+      const handleResize = () => setMatches(getMatch());
 
-    handleResize();
+      handleResize();
 
-    mediaQueryList.forEach(list => {
-      if (list.addEventListener) {
-        return list.addEventListener('change', handleResize);
-      }
-      return list.addListener(handleResize);
-    });
-
-    return () =>
       mediaQueryList.forEach(list => {
-        if (list.removeEventListener) {
-          return list.removeEventListener('change', handleResize);
+        if (list.addEventListener) {
+          return list.addEventListener('change', handleResize);
         }
-        return list.removeListener(handleResize);
+        return list.addListener(handleResize);
       });
-  }, [queries]);
+
+      return () =>
+        mediaQueryList.forEach(list => {
+          if (list.removeEventListener) {
+            return list.removeEventListener('change', handleResize);
+          }
+          return list.removeListener(handleResize);
+        });
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    queries,
+  );
 
   return matches;
 };
