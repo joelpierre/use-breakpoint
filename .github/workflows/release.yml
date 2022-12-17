@@ -35,7 +35,7 @@ jobs:
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE }}
-        run: echo ${{ env.NPM_TOKEN }} && echo ${{ env.GITHUB_TOKEN }} && ${{ secrets.NPM_TOKEN }} && ${{ secrets.SEMANTIC_RELEASE }}
+        run: yarn semantic-release --access public
 
 #  publish-gpr:
 #    needs: build
