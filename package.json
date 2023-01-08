@@ -3,7 +3,11 @@
   "version": "1.1.4",
   "description": "Use breakpoints in JS when dealing with React based applications",
   "main": "dist/index.js",
+  "exports": {
+    ".": "./dist/index.js"
+  },
   "types": "dist/index.d.ts",
+  "type": "module",
   "files": [
     "dist"
   ],
@@ -21,7 +25,7 @@
     "size": "size-limit",
     "semantic-release": "semantic-release"
   },
-  "author": "Joel Pierre",
+  "author": "Joel Pierre <jpp@jppdesigns.co.uk>",
   "license": "ISC",
   "size-limit": [
     {
@@ -105,5 +109,17 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/joelpierre/use-breakpoint.git"
-  }
+  },
+  "sideEffects": false,
+  "homepage": "https://github.com/joelpierre/use-breakpoint",
+  "bugs": "https://github.com/joelpierre/use-breakpoint/issues",
+  "keywords": [
+    "breakpoint",
+    "matchMedia",
+    "react",
+    "responsive",
+    "typescript",
+    "viewport",
+    "window.matchMedia"
+  ]
 }
