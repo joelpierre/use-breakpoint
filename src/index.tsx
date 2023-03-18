@@ -14,19 +14,21 @@ type ValueOf<
 > = ObjectType[ValueType];
 
 export type TBreakpointDirection = 'min' | 'max';
-export type TBreakpointSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+export type TBreakpointSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
 type TPageWidthSize = `${string | number}`;
 type TMediaQueries = ValueOf<
   | ReturnType<typeof minMatchMediaQueries>
   | ReturnType<typeof maxMatchMediaQueries>
 >[];
 type TMediaMatches = boolean[];
+type OverrideType = string | number;
 type TBreakpointOverrides = Partial<{
-  xs: string | number;
-  sm: string | number;
-  md: string | number;
-  lg: string | number;
-  xl: string | number;
+  xs: OverrideType;
+  sm: OverrideType;
+  md: OverrideType;
+  lg: OverrideType;
+  xl: OverrideType;
+  '2xl': OverrideType;
 }>;
 
 const mapBreakpointToPageWidthSize: Record<TBreakpointSize, TPageWidthSize> = {
@@ -35,7 +37,11 @@ const mapBreakpointToPageWidthSize: Record<TBreakpointSize, TPageWidthSize> = {
   md: '960',
   lg: '1280',
   xl: '1440',
+  '2xl': '1440',
 };
+
+const replacePx = (value?: OverrideType) =>
+  typeof value === 'string' ? value.replace(/px/gi, '') : value;
 
 const minMatchMediaQueries = ({
   xl,
@@ -43,16 +49,20 @@ const minMatchMediaQueries = ({
   md,
   lg,
   xs,
+  ...overrides
 }: TBreakpointOverrides = {}): Record<
   TBreakpointSize,
   `(min-width: ${TPageWidthSize}px)`
 > => {
   return {
-    xs: `(min-width: ${xs ?? mapBreakpointToPageWidthSize.xs}px)`,
-    sm: `(min-width: ${sm ?? mapBreakpointToPageWidthSize.sm}px)`,
-    md: `(min-width: ${md ?? mapBreakpointToPageWidthSize.md}px)`,
-    lg: `(min-width: ${lg ?? mapBreakpointToPageWidthSize.lg}px)`,
-    xl: `(min-width: ${xl ?? mapBreakpointToPageWidthSize.xl}px)`,
+    xs: `(min-width: ${replacePx(xs) ?? mapBreakpointToPageWidthSize.xs}px)`,
+    sm: `(min-width: ${replacePx(sm) ?? mapBreakpointToPageWidthSize.sm}px)`,
+    md: `(min-width: ${replacePx(md) ?? mapBreakpointToPageWidthSize.md}px)`,
+    lg: `(min-width: ${replacePx(lg) ?? mapBreakpointToPageWidthSize.lg}px)`,
+    xl: `(min-width: ${replacePx(xl) ?? mapBreakpointToPageWidthSize.xl}px)`,
+    '2xl': `(min-width: ${
+      replacePx(overrides['2xl']) ?? mapBreakpointToPageWidthSize['2xl']
+    }px)`,
   };
 };
 
@@ -71,6 +81,7 @@ const maxMatchMediaQueries = ({
   md: `(max-width: ${md ?? mapBreakpointToPageWidthSize.md}px)`,
   lg: `(max-width: ${lg ?? mapBreakpointToPageWidthSize.lg}px)`,
   xl: `(max-width: ${xl ?? mapBreakpointToPageWidthSize.xl}px)`,
+  '2xl': `(max-width: ${xl ?? mapBreakpointToPageWidthSize['2xl']}px)`,
 });
 
 /**
@@ -115,24 +126,30 @@ const useMatchMedia = (queries: TMediaQueries): TMediaMatches => {
 };
 
 type TBreakPoint = {
+  isXs: boolean;
   isSm: boolean;
   isMd: boolean;
   isLg: boolean;
   isXl: boolean;
+  is2Xl: boolean;
 };
 
 const defaultContext: Record<TBreakpointDirection, TBreakPoint> = {
   min: {
+    isXs: false,
     isSm: false,
     isMd: false,
     isLg: false,
     isXl: false,
+    is2Xl: false,
   },
   max: {
+    isXs: false,
     isSm: false,
     isMd: false,
     isLg: false,
     isXl: false,
+    is2Xl: false,
   },
 };
 
@@ -162,8 +179,12 @@ export const BreakpointProvider: FC<{
     () => maxMatchMediaQueries(breakpointOverrides),
     [breakpointOverrides],
   );
-  const [minXs, minSm, minMd, minLg, minXl] = useMatchMedia(Object.values(min));
-  const [maxXs, maxSm, maxMd, maxLg, maxXl] = useMatchMedia(Object.values(max));
+  const [minXs, minSm, minMd, minLg, minXl, min2Xl] = useMatchMedia(
+    Object.values(min),
+  );
+  const [maxXs, maxSm, maxMd, maxLg, maxXl, max2Xl] = useMatchMedia(
+    Object.values(max),
+  );
   const value = useMemo(
     () => ({
       min: {
@@ -172,6 +193,7 @@ export const BreakpointProvider: FC<{
         isMd: minMd,
         isLg: minLg,
         isXl: minXl,
+        is2Xl: min2Xl,
       },
       max: {
         isXs: maxXs,
@@ -179,9 +201,23 @@ export const BreakpointProvider: FC<{
         isMd: maxMd,
         isLg: maxLg,
         isXl: maxXl,
+        is2Xl: max2Xl,
       },
     }),
-    [maxLg, maxMd, maxSm, maxXl, maxXs, minLg, minMd, minSm, minXl, minXs],
+    [
+      max2Xl,
+      maxLg,
+      maxMd,
+      maxSm,
+      maxXl,
+      maxXs,
+      min2Xl,
+      minLg,
+      minMd,
+      minSm,
+      minXl,
+      minXs,
+    ],
   );
   return (
     <BreakPointContext.Provider value={value}>
