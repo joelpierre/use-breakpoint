@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/joelpierre/use-breakpoint/compare/v1.1.4...v1.2.0) (2023-03-18)
+
+
+### Features
+
+* **2xl-breakpoint:** add 2xl breakpoint as max, upgrade TS and use the XS value correctly ([3d3ca2f](https://github.com/joelpierre/use-breakpoint/commit/3d3ca2f6cee36609fa4f34c0e7daff887317d6f1))
+
 ## [1.1.4](https://github.com/joelpierre/use-breakpoint/compare/v1.1.3...v1.1.4) (2022-12-17)
 
 

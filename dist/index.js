@@ -22,6 +22,17 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.BreakpointProvider = exports.useBreakPoint = void 0;
 const react_1 = __importStar(require("react"));
@@ -31,14 +42,19 @@ const mapBreakpointToPageWidthSize = {
     md: '960',
     lg: '1280',
     xl: '1440',
+    '2xl': '1440',
 };
-const minMatchMediaQueries = ({ xl, sm, md, lg, xs, } = {}) => {
+const replacePx = (value) => typeof value === 'string' ? value.replace(/px/gi, '') : value;
+const minMatchMediaQueries = (_a = {}) => {
+    var _b, _c, _d, _e, _f, _g;
+    var { xl, sm, md, lg, xs } = _a, overrides = __rest(_a, ["xl", "sm", "md", "lg", "xs"]);
     return {
-        xs: `(min-width: ${xs !== null && xs !== void 0 ? xs : mapBreakpointToPageWidthSize.xs}px)`,
-        sm: `(min-width: ${sm !== null && sm !== void 0 ? sm : mapBreakpointToPageWidthSize.sm}px)`,
-        md: `(min-width: ${md !== null && md !== void 0 ? md : mapBreakpointToPageWidthSize.md}px)`,
-        lg: `(min-width: ${lg !== null && lg !== void 0 ? lg : mapBreakpointToPageWidthSize.lg}px)`,
-        xl: `(min-width: ${xl !== null && xl !== void 0 ? xl : mapBreakpointToPageWidthSize.xl}px)`,
+        xs: `(min-width: ${(_b = replacePx(xs)) !== null && _b !== void 0 ? _b : mapBreakpointToPageWidthSize.xs}px)`,
+        sm: `(min-width: ${(_c = replacePx(sm)) !== null && _c !== void 0 ? _c : mapBreakpointToPageWidthSize.sm}px)`,
+        md: `(min-width: ${(_d = replacePx(md)) !== null && _d !== void 0 ? _d : mapBreakpointToPageWidthSize.md}px)`,
+        lg: `(min-width: ${(_e = replacePx(lg)) !== null && _e !== void 0 ? _e : mapBreakpointToPageWidthSize.lg}px)`,
+        xl: `(min-width: ${(_f = replacePx(xl)) !== null && _f !== void 0 ? _f : mapBreakpointToPageWidthSize.xl}px)`,
+        '2xl': `(min-width: ${(_g = replacePx(overrides['2xl'])) !== null && _g !== void 0 ? _g : mapBreakpointToPageWidthSize['2xl']}px)`,
     };
 };
 const maxMatchMediaQueries = ({ xl, sm, md, lg, xs, } = {}) => ({
@@ -47,6 +63,7 @@ const maxMatchMediaQueries = ({ xl, sm, md, lg, xs, } = {}) => ({
     md: `(max-width: ${md !== null && md !== void 0 ? md : mapBreakpointToPageWidthSize.md}px)`,
     lg: `(max-width: ${lg !== null && lg !== void 0 ? lg : mapBreakpointToPageWidthSize.lg}px)`,
     xl: `(max-width: ${xl !== null && xl !== void 0 ? xl : mapBreakpointToPageWidthSize.xl}px)`,
+    '2xl': `(max-width: ${xl !== null && xl !== void 0 ? xl : mapBreakpointToPageWidthSize['2xl']}px)`,
 });
 /**
  * The MatchMedia API had a change of spec
@@ -80,16 +97,20 @@ const useMatchMedia = (queries) => {
 };
 const defaultContext = {
     min: {
+        isXs: false,
         isSm: false,
         isMd: false,
         isLg: false,
         isXl: false,
+        is2Xl: false,
     },
     max: {
+        isXs: false,
         isSm: false,
         isMd: false,
         isLg: false,
         isXl: false,
+        is2Xl: false,
     },
 };
 const BreakPointContext = (0, react_1.createContext)(defaultContext);
@@ -104,8 +125,8 @@ exports.useBreakPoint = useBreakPoint;
 const BreakpointProvider = ({ children, breakpointOverrides }) => {
     const min = (0, react_1.useMemo)(() => minMatchMediaQueries(breakpointOverrides), [breakpointOverrides]);
     const max = (0, react_1.useMemo)(() => maxMatchMediaQueries(breakpointOverrides), [breakpointOverrides]);
-    const [minXs, minSm, minMd, minLg, minXl] = useMatchMedia(Object.values(min));
-    const [maxXs, maxSm, maxMd, maxLg, maxXl] = useMatchMedia(Object.values(max));
+    const [minXs, minSm, minMd, minLg, minXl, min2Xl] = useMatchMedia(Object.values(min));
+    const [maxXs, maxSm, maxMd, maxLg, maxXl, max2Xl] = useMatchMedia(Object.values(max));
     const value = (0, react_1.useMemo)(() => ({
         min: {
             isXs: minXs,
@@ -113,6 +134,7 @@ const BreakpointProvider = ({ children, breakpointOverrides }) => {
             isMd: minMd,
             isLg: minLg,
             isXl: minXl,
+            is2Xl: min2Xl,
         },
         max: {
             isXs: maxXs,
@@ -120,8 +142,22 @@ const BreakpointProvider = ({ children, breakpointOverrides }) => {
             isMd: maxMd,
             isLg: maxLg,
             isXl: maxXl,
+            is2Xl: max2Xl,
         },
-    }), [maxLg, maxMd, maxSm, maxXl, maxXs, minLg, minMd, minSm, minXl, minXs]);
+    }), [
+        max2Xl,
+        maxLg,
+        maxMd,
+        maxSm,
+        maxXl,
+        maxXs,
+        min2Xl,
+        minLg,
+        minMd,
+        minSm,
+        minXl,
+        minXs,
+    ]);
     return (react_1.default.createElement(BreakPointContext.Provider, { value: value }, children));
 };
 exports.BreakpointProvider = BreakpointProvider;
