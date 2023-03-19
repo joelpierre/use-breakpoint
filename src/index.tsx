@@ -37,7 +37,7 @@ const mapBreakpointToPageWidthSize: Record<TBreakpointSize, TPageWidthSize> = {
   md: '960',
   lg: '1280',
   xl: '1440',
-  '2xl': '1600',
+  '2xl': '1680',
 };
 
 const replacePx = (value?: OverrideType) =>
