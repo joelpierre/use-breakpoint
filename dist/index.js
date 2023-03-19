@@ -42,7 +42,7 @@ const mapBreakpointToPageWidthSize = {
     md: '960',
     lg: '1280',
     xl: '1440',
-    '2xl': '1440',
+    '2xl': '1680',
 };
 const replacePx = (value) => typeof value === 'string' ? value.replace(/px/gi, '') : value;
 const minMatchMediaQueries = (_a = {}) => {

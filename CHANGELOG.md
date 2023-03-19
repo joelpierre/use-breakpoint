@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/joelpierre/use-breakpoint/compare/v1.2.0...v1.2.1) (2023-03-19)
+
+
+### Bug Fixes
+
+* add val for 2xl ([adbf69d](https://github.com/joelpierre/use-breakpoint/commit/adbf69deb9fde3973ba8fab1ed4d7bd4dbea4356))
+
 # [1.2.0](https://github.com/joelpierre/use-breakpoint/compare/v1.1.4...v1.2.0) (2023-03-18)
 
 
