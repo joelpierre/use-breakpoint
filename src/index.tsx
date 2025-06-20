@@ -1,4 +1,4 @@
-import React, {
+import {
   FC,
   ReactNode,
   createContext,
@@ -15,14 +15,14 @@ type ValueOf<
 
 export type TBreakpointDirection = 'min' | 'max';
 export type TBreakpointSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
-type TPageWidthSize = `${string | number}`;
+type TScreenSize = `${string | number}`;
 type TMediaQueries = ValueOf<
   | ReturnType<typeof minMatchMediaQueries>
   | ReturnType<typeof maxMatchMediaQueries>
 >[];
 type TMediaMatches = boolean[];
 type OverrideType = string | number;
-type TBreakpointOverrides = Partial<{
+export type TBreakpointOverrides = Partial<{
   xs: OverrideType;
   sm: OverrideType;
   md: OverrideType;
@@ -31,16 +31,16 @@ type TBreakpointOverrides = Partial<{
   '2xl': OverrideType;
 }>;
 
-const mapBreakpointToPageWidthSize: Record<TBreakpointSize, TPageWidthSize> = {
+export const DEFAULT_BREAK_POINTS = Object.freeze({
   xs: '360',
   sm: '640',
   md: '960',
   lg: '1280',
   xl: '1440',
   '2xl': '1680',
-};
+});
 
-const replacePx = (value?: OverrideType) =>
+export const replacePxInString = (value?: OverrideType) =>
   typeof value === 'string' ? value.replace(/px/gi, '') : value;
 
 const minMatchMediaQueries = ({
@@ -52,16 +52,16 @@ const minMatchMediaQueries = ({
   ...overrides
 }: TBreakpointOverrides = {}): Record<
   TBreakpointSize,
-  `(min-width: ${TPageWidthSize}px)`
+  `(min-width: ${TScreenSize}px)`
 > => {
   return {
-    xs: `(min-width: ${replacePx(xs) ?? mapBreakpointToPageWidthSize.xs}px)`,
-    sm: `(min-width: ${replacePx(sm) ?? mapBreakpointToPageWidthSize.sm}px)`,
-    md: `(min-width: ${replacePx(md) ?? mapBreakpointToPageWidthSize.md}px)`,
-    lg: `(min-width: ${replacePx(lg) ?? mapBreakpointToPageWidthSize.lg}px)`,
-    xl: `(min-width: ${replacePx(xl) ?? mapBreakpointToPageWidthSize.xl}px)`,
+    xs: `(min-width: ${replacePxInString(xs) ?? DEFAULT_BREAK_POINTS.xs}px)`,
+    sm: `(min-width: ${replacePxInString(sm) ?? DEFAULT_BREAK_POINTS.sm}px)`,
+    md: `(min-width: ${replacePxInString(md) ?? DEFAULT_BREAK_POINTS.md}px)`,
+    lg: `(min-width: ${replacePxInString(lg) ?? DEFAULT_BREAK_POINTS.lg}px)`,
+    xl: `(min-width: ${replacePxInString(xl) ?? DEFAULT_BREAK_POINTS.xl}px)`,
     '2xl': `(min-width: ${
-      replacePx(overrides['2xl']) ?? mapBreakpointToPageWidthSize['2xl']
+      replacePxInString(overrides['2xl']) ?? DEFAULT_BREAK_POINTS['2xl']
     }px)`,
   };
 };
@@ -72,16 +72,19 @@ const maxMatchMediaQueries = ({
   md,
   lg,
   xs,
+  ...overrides
 }: TBreakpointOverrides = {}): Record<
   TBreakpointSize,
-  `(max-width: ${TPageWidthSize}px)`
+  `(max-width: ${TScreenSize}px)`
 > => ({
-  xs: `(max-width: ${xs ?? mapBreakpointToPageWidthSize.xs}px)`,
-  sm: `(max-width: ${sm ?? mapBreakpointToPageWidthSize.sm}px)`,
-  md: `(max-width: ${md ?? mapBreakpointToPageWidthSize.md}px)`,
-  lg: `(max-width: ${lg ?? mapBreakpointToPageWidthSize.lg}px)`,
-  xl: `(max-width: ${xl ?? mapBreakpointToPageWidthSize.xl}px)`,
-  '2xl': `(max-width: ${xl ?? mapBreakpointToPageWidthSize['2xl']}px)`,
+  xs: `(max-width: ${replacePxInString(xs) ?? DEFAULT_BREAK_POINTS.xs}px)`,
+  sm: `(max-width: ${replacePxInString(sm) ?? DEFAULT_BREAK_POINTS.sm}px)`,
+  md: `(max-width: ${replacePxInString(md) ?? DEFAULT_BREAK_POINTS.md}px)`,
+  lg: `(max-width: ${replacePxInString(lg) ?? DEFAULT_BREAK_POINTS.lg}px)`,
+  xl: `(max-width: ${replacePxInString(xl) ?? DEFAULT_BREAK_POINTS.xl}px)`,
+  '2xl': `(max-width: ${
+    replacePxInString(overrides['2xl']) ?? DEFAULT_BREAK_POINTS['2xl']
+  }px)`,
 });
 
 /**
@@ -125,7 +128,7 @@ const useMatchMedia = (queries: TMediaQueries): TMediaMatches => {
   return matches;
 };
 
-type TBreakPoint = {
+export type TBreakPoint = {
   isXs: boolean;
   isSm: boolean;
   isMd: boolean;
@@ -134,7 +137,7 @@ type TBreakPoint = {
   is2Xl: boolean;
 };
 
-const defaultContext: Record<TBreakpointDirection, TBreakPoint> = {
+const defaultBreakPointContext: Record<TBreakpointDirection, TBreakPoint> = {
   min: {
     isXs: false,
     isSm: false,
@@ -153,11 +156,15 @@ const defaultContext: Record<TBreakpointDirection, TBreakPoint> = {
   },
 };
 
-const BreakPointContext = createContext<typeof defaultContext>(defaultContext);
+const BreakPointContext = createContext<typeof defaultBreakPointContext>(
+  defaultBreakPointContext,
+);
 
-export function useBreakPoint(key: keyof typeof defaultContext): TBreakPoint;
-export function useBreakPoint(key?: undefined): typeof defaultContext;
-export function useBreakPoint(key?: keyof typeof defaultContext) {
+export function useBreakPoint(
+  key: keyof typeof defaultBreakPointContext,
+): TBreakPoint;
+export function useBreakPoint(key?: undefined): typeof defaultBreakPointContext;
+export function useBreakPoint(key?: keyof typeof defaultBreakPointContext) {
   const context = useContext(BreakPointContext);
   if (context === undefined) {
     throw new Error(
@@ -170,14 +177,24 @@ export function useBreakPoint(key?: keyof typeof defaultContext) {
 export const BreakpointProvider: FC<{
   children: ReactNode;
   breakpointOverrides?: TBreakpointOverrides;
-}> = ({ children, breakpointOverrides }) => {
+  mediaQueryMethods?: {
+    min: typeof minMatchMediaQueries;
+    max: typeof maxMatchMediaQueries;
+  };
+}> = ({ children, breakpointOverrides, mediaQueryMethods }) => {
   const min = useMemo(
-    () => minMatchMediaQueries(breakpointOverrides),
-    [breakpointOverrides],
+    () =>
+      mediaQueryMethods?.min
+        ? mediaQueryMethods.min(breakpointOverrides)
+        : minMatchMediaQueries(breakpointOverrides),
+    [breakpointOverrides, mediaQueryMethods],
   );
   const max = useMemo(
-    () => maxMatchMediaQueries(breakpointOverrides),
-    [breakpointOverrides],
+    () =>
+      mediaQueryMethods?.max
+        ? mediaQueryMethods.max(breakpointOverrides)
+        : maxMatchMediaQueries(breakpointOverrides),
+    [breakpointOverrides, mediaQueryMethods],
   );
   const [minXs, minSm, minMd, minLg, minXl, min2Xl] = useMatchMedia(
     Object.values(min),

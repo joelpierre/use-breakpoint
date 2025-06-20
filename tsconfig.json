@@ -7,7 +7,7 @@
     "target": "es6",
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "module": "commonjs",
+    "module": "esnext",
     "lib": [
       "dom",
       "esnext"
@@ -18,7 +18,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "moduleResolution": "node",
-    "jsx": "react",
+    "jsx": "react-jsx",
     "forceConsistentCasingInFileNames": true
   },
   "include": [
@@ -27,7 +27,7 @@
   "exclude": [
     "node_modules",
     "dist",
-    ".eslintrc.js",
+    "eslint.config.mjs",
     "*.config.js"
   ]
 }
