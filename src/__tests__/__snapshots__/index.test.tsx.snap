@@ -1,0 +1,44 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`useBeakPoint > should return max breakpoints 1`] = `
+{
+  "is2Xl": false,
+  "isLg": false,
+  "isMd": false,
+  "isSm": false,
+  "isXl": false,
+  "isXs": false,
+}
+`;
+
+exports[`useBeakPoint > should return min and max breakpoints 1`] = `
+{
+  "max": {
+    "is2Xl": false,
+    "isLg": false,
+    "isMd": false,
+    "isSm": false,
+    "isXl": false,
+    "isXs": false,
+  },
+  "min": {
+    "is2Xl": false,
+    "isLg": false,
+    "isMd": false,
+    "isSm": false,
+    "isXl": false,
+    "isXs": false,
+  },
+}
+`;
+
+exports[`useBeakPoint > should return min breakpoints 1`] = `
+{
+  "is2Xl": false,
+  "isLg": false,
+  "isMd": false,
+  "isSm": false,
+  "isXl": false,
+  "isXs": false,
+}
+`;

@@ -1,3 +1,5 @@
+'use client';
+
 import {
   FC,
   ReactNode,
@@ -55,14 +57,14 @@ const minMatchMediaQueries = ({
   `(min-width: ${TScreenSize}px)`
 > => {
   return {
-    xs: `(min-width: ${replacePxInString(xs) ?? DEFAULT_BREAK_POINTS.xs}px)`,
-    sm: `(min-width: ${replacePxInString(sm) ?? DEFAULT_BREAK_POINTS.sm}px)`,
-    md: `(min-width: ${replacePxInString(md) ?? DEFAULT_BREAK_POINTS.md}px)`,
-    lg: `(min-width: ${replacePxInString(lg) ?? DEFAULT_BREAK_POINTS.lg}px)`,
-    xl: `(min-width: ${replacePxInString(xl) ?? DEFAULT_BREAK_POINTS.xl}px)`,
-    '2xl': `(min-width: ${
-      replacePxInString(overrides['2xl']) ?? DEFAULT_BREAK_POINTS['2xl']
-    }px)`,
+    xs: `(min-width: ${replacePxInString(xs ?? DEFAULT_BREAK_POINTS.xs)}px)`,
+    sm: `(min-width: ${replacePxInString(sm ?? DEFAULT_BREAK_POINTS.sm)}px)`,
+    md: `(min-width: ${replacePxInString(md ?? DEFAULT_BREAK_POINTS.md)}px)`,
+    lg: `(min-width: ${replacePxInString(lg ?? DEFAULT_BREAK_POINTS.lg)}px)`,
+    xl: `(min-width: ${replacePxInString(xl ?? DEFAULT_BREAK_POINTS.xl)}px)`,
+    '2xl': `(min-width: ${replacePxInString(
+      overrides['2xl'] ?? DEFAULT_BREAK_POINTS['2xl'],
+    )}px)`,
   };
 };
 
@@ -77,14 +79,14 @@ const maxMatchMediaQueries = ({
   TBreakpointSize,
   `(max-width: ${TScreenSize}px)`
 > => ({
-  xs: `(max-width: ${replacePxInString(xs) ?? DEFAULT_BREAK_POINTS.xs}px)`,
-  sm: `(max-width: ${replacePxInString(sm) ?? DEFAULT_BREAK_POINTS.sm}px)`,
-  md: `(max-width: ${replacePxInString(md) ?? DEFAULT_BREAK_POINTS.md}px)`,
-  lg: `(max-width: ${replacePxInString(lg) ?? DEFAULT_BREAK_POINTS.lg}px)`,
-  xl: `(max-width: ${replacePxInString(xl) ?? DEFAULT_BREAK_POINTS.xl}px)`,
-  '2xl': `(max-width: ${
-    replacePxInString(overrides['2xl']) ?? DEFAULT_BREAK_POINTS['2xl']
-  }px)`,
+  xs: `(max-width: ${replacePxInString(xs ?? DEFAULT_BREAK_POINTS.xs)}px)`,
+  sm: `(max-width: ${replacePxInString(sm ?? DEFAULT_BREAK_POINTS.sm)}px)`,
+  md: `(max-width: ${replacePxInString(md ?? DEFAULT_BREAK_POINTS.md)}px)`,
+  lg: `(max-width: ${replacePxInString(lg ?? DEFAULT_BREAK_POINTS.lg)}px)`,
+  xl: `(max-width: ${replacePxInString(xl ?? DEFAULT_BREAK_POINTS.xl)}px)`,
+  '2xl': `(max-width: ${replacePxInString(
+    overrides['2xl'] ?? DEFAULT_BREAK_POINTS['2xl'],
+  )}px)`,
 });
 
 /**
@@ -137,7 +139,10 @@ export type TBreakPoint = {
   is2Xl: boolean;
 };
 
-const defaultBreakPointContext: Record<TBreakpointDirection, TBreakPoint> = {
+export const defaultBreakPointContext: Record<
+  TBreakpointDirection,
+  TBreakPoint
+> = {
   min: {
     isXs: false,
     isSm: false,
