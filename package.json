@@ -30,7 +30,7 @@
   "license": "ISC",
   "size-limit": [
     {
-      "path": "dist/index.js"
+      "path": "dist"
     }
   ],
   "release": {
