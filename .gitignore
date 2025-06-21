@@ -12,3 +12,4 @@ node_modules
 !.yarn/sdks
 !.yarn/versions
 tsconfig.tsbuildinfo
+sonar-report.xml
