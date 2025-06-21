@@ -1,3 +1,11 @@
+# [1.4.0](https://github.com/joelpierre/use-breakpoint/compare/v1.3.0...v1.4.0) (2025-06-21)
+
+
+### Features
+
+* **tests:** add vitest ([f31cd24](https://github.com/joelpierre/use-breakpoint/commit/f31cd249e998cfd9b12de9a73ce9c2075dd81a8b))
+* **vite:** use vite for build ([f9a42f0](https://github.com/joelpierre/use-breakpoint/commit/f9a42f0e5021fd6839ce0d99df8d9fee436b5d51))
+
 # [1.3.0](https://github.com/joelpierre/use-breakpoint/compare/v1.2.1...v1.3.0) (2025-06-20)
 
 
