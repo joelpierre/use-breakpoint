@@ -12,7 +12,6 @@ export default defineConfig({
       fileName: format => `index.${format}.js`,
     },
     rollupOptions: {
-      // avoid bundling react & react-dom
       external: ['react', 'react-dom'],
       output: {
         globals: {
