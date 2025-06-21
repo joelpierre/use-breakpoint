@@ -1,3 +1,10 @@
+## [1.4.1](https://github.com/joelpierre/use-breakpoint/compare/v1.4.0...v1.4.1) (2025-06-21)
+
+
+### Bug Fixes
+
+* type exports ([bf9278a](https://github.com/joelpierre/use-breakpoint/commit/bf9278aa9d9a8dbc123c8c0ad9da354dacc96091))
+
 # [1.4.0](https://github.com/joelpierre/use-breakpoint/compare/v1.3.0...v1.4.0) (2025-06-21)
 
 
