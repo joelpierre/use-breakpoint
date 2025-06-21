@@ -1,0 +1,37 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "declarationDir": "dist",
+    "emitDeclarationOnly": true,
+    "outDir": "dist",
+    "rootDir": "src",
+    "strict": true,
+    "target": "esnext",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "module": "esnext",
+    "lib": [
+      "dom",
+      "esnext"
+    ],
+    "sourceMap": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "moduleResolution": "node",
+    "jsx": "react-jsx",
+    "forceConsistentCasingInFileNames": true,
+    "types": ["vitest/globals", "@testing-library/jest-dom"]
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "eslint.config.mjs",
+    "*.config.js",
+    "src/__tests__"
+  ]
+}
