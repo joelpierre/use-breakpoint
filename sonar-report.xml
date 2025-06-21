@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testExecutions version="1">
   <file path="src/__tests__/index.test.tsx">
-    <testCase name="useBeakPoint - should return min and max breakpoints" duration="6" />
+    <testCase name="useBeakPoint - should return min and max breakpoints" duration="7" />
     <testCase name="useBeakPoint - should return min breakpoints" duration="1" />
     <testCase name="useBeakPoint - should return max breakpoints" duration="1" />
   </file>
