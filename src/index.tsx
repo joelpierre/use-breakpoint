@@ -17,20 +17,20 @@ type ValueOf<
 
 export type TBreakpointDirection = 'min' | 'max';
 export type TBreakpointSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
-type TScreenSize = `${string | number}`;
-type TMediaQueries = ValueOf<
+export type TScreenSize = `${string | number}`;
+export type TMediaQueries = ValueOf<
   | ReturnType<typeof minMatchMediaQueries>
   | ReturnType<typeof maxMatchMediaQueries>
 >[];
-type TMediaMatches = boolean[];
-type OverrideType = string | number;
+export type TMediaMatches = boolean[];
+export type TBreakpointVal = string | number;
 export type TBreakpointOverrides = Partial<{
-  xs: OverrideType;
-  sm: OverrideType;
-  md: OverrideType;
-  lg: OverrideType;
-  xl: OverrideType;
-  '2xl': OverrideType;
+  xs: TBreakpointVal;
+  sm: TBreakpointVal;
+  md: TBreakpointVal;
+  lg: TBreakpointVal;
+  xl: TBreakpointVal;
+  '2xl': TBreakpointVal;
 }>;
 
 export const DEFAULT_BREAK_POINTS = Object.freeze({
@@ -42,7 +42,7 @@ export const DEFAULT_BREAK_POINTS = Object.freeze({
   '2xl': '1680',
 });
 
-export const replacePxInString = (value?: OverrideType) =>
+export const replacePxInString = (value?: TBreakpointVal) =>
   typeof value === 'string' ? value.replace(/px/gi, '') : value;
 
 const minMatchMediaQueries = ({
