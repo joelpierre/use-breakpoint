@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/joelpierre/use-breakpoint/compare/v1.2.1...v1.3.0) (2025-06-20)
+
+
+### Features
+
+* release 1.2.2 ([0782f36](https://github.com/joelpierre/use-breakpoint/commit/0782f363f907952bc0070635a6f985cfea5da8c9))
+
 ## [1.2.1](https://github.com/joelpierre/use-breakpoint/compare/v1.2.0...v1.2.1) (2023-03-19)
 
 
