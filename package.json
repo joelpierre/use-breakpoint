@@ -4,9 +4,12 @@
   "description": "Use breakpoints in JS when dealing with React based applications",
   "main": "dist/index.js",
   "exports": {
-    ".": "./dist/index.es.js"
+    ".": {
+      "import": "./dist/index.es.js",
+      "types": "./dist/index.d.ts"
+    }
   },
-  "types": "dist/index.d.ts",
+  "types": "./dist/index.d.ts",
   "type": "module",
   "files": [
     "dist"
