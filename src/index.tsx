@@ -110,17 +110,19 @@ const useMatchMedia = (queries: TMediaQueries): TMediaMatches => {
 
       mediaQueryList.forEach(list => {
         if (list.addEventListener) {
-          return list.addEventListener('change', handleResize);
+          list.addEventListener('change', handleResize);
+        } else {
+          list.addListener(handleResize);
         }
-        return list.addListener(handleResize);
       });
 
       return () =>
         mediaQueryList.forEach(list => {
           if (list.removeEventListener) {
-            return list.removeEventListener('change', handleResize);
+            list.removeEventListener('change', handleResize);
+          } else {
+            list.removeListener(handleResize);
           }
-          return list.removeListener(handleResize);
         });
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -161,9 +163,9 @@ export const defaultBreakPointContext: Record<
   },
 };
 
-const BreakPointContext = createContext<typeof defaultBreakPointContext>(
-  defaultBreakPointContext,
-);
+const BreakPointContext = createContext<
+  typeof defaultBreakPointContext | undefined
+>(undefined);
 
 export function useBreakPoint(
   key: keyof typeof defaultBreakPointContext,
@@ -201,12 +203,11 @@ export const BreakpointProvider: FC<{
         : maxMatchMediaQueries(breakpointOverrides),
     [breakpointOverrides, mediaQueryMethods],
   );
-  const [minXs, minSm, minMd, minLg, minXl, min2Xl] = useMatchMedia(
-    Object.values(min),
-  );
-  const [maxXs, maxSm, maxMd, maxLg, maxXl, max2Xl] = useMatchMedia(
-    Object.values(max),
-  );
+  const minQueries = useMemo(() => Object.values(min), [min]);
+  const maxQueries = useMemo(() => Object.values(max), [max]);
+
+  const [minXs, minSm, minMd, minLg, minXl, min2Xl] = useMatchMedia(minQueries);
+  const [maxXs, maxSm, maxMd, maxLg, maxXl, max2Xl] = useMatchMedia(maxQueries);
   const value = useMemo(
     () => ({
       min: {
