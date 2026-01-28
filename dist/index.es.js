@@ -1,5 +1,5 @@
-import oe, { createContext as se, useContext as ie, useMemo as X, useState as le, useEffect as ce } from "react";
-var O = { exports: {} }, w = {};
+import oe, { createContext as se, useContext as ie, useMemo as w, useState as le, useEffect as ce } from "react";
+var y = { exports: {} }, g = {};
 /**
  * @license React
  * react-jsx-runtime.production.js
@@ -9,29 +9,29 @@ var O = { exports: {} }, w = {};
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-var B;
+var J;
 function ue() {
-  if (B) return w;
-  B = 1;
+  if (J) return g;
+  J = 1;
   var t = Symbol.for("react.transitional.element"), o = Symbol.for("react.fragment");
-  function l(f, i, n) {
-    var s = null;
-    if (n !== void 0 && (s = "" + n), i.key !== void 0 && (s = "" + i.key), "key" in i) {
-      n = {};
-      for (var E in i)
-        E !== "key" && (n[E] = i[E]);
-    } else n = i;
-    return i = n.ref, {
+  function l(c, s, a) {
+    var i = null;
+    if (a !== void 0 && (i = "" + a), s.key !== void 0 && (i = "" + s.key), "key" in s) {
+      a = {};
+      for (var E in s)
+        E !== "key" && (a[E] = s[E]);
+    } else a = s;
+    return s = a.ref, {
       $$typeof: t,
-      type: f,
-      key: s,
-      ref: i !== void 0 ? i : null,
-      props: n
+      type: c,
+      key: i,
+      ref: s !== void 0 ? s : null,
+      props: a
     };
   }
-  return w.Fragment = o, w.jsx = l, w.jsxs = l, w;
+  return g.Fragment = o, g.jsx = l, g.jsxs = l, g;
 }
-var g = {};
+var P = {};
 /**
  * @license React
  * react-jsx-runtime.development.js
@@ -41,9 +41,9 @@ var g = {};
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-var z;
+var V;
 function fe() {
-  return z || (z = 1, process.env.NODE_ENV !== "production" && function() {
+  return V || (V = 1, process.env.NODE_ENV !== "production" && function() {
     function t(e) {
       if (e == null) return null;
       if (typeof e == "function")
@@ -54,11 +54,11 @@ function fe() {
           return "Fragment";
         case j:
           return "Profiler";
-        case A:
+        case O:
           return "StrictMode";
-        case K:
-          return "Suspense";
         case Q:
+          return "Suspense";
+        case K:
           return "SuspenseList";
         case re:
           return "Activity";
@@ -67,18 +67,18 @@ function fe() {
         switch (typeof e.tag == "number" && console.error(
           "Received an unexpected object in getComponentNameFromType(). This is likely a bug in React. Please file an issue."
         ), e.$$typeof) {
-          case k:
+          case A:
             return "Portal";
-          case H:
+          case C:
             return (e.displayName || "Context") + ".Provider";
-          case G:
+          case N:
             return (e._context.displayName || "Context") + ".Consumer";
           case Z:
             var r = e.render;
             return e = e.displayName, e || (e = r.displayName || r.name || "", e = e !== "" ? "ForwardRef(" + e + ")" : "ForwardRef"), e;
           case ee:
             return r = e.displayName || null, r !== null ? r : t(e.type) || "Memo";
-          case M:
+          case I:
             r = e._payload, e = e._init;
             try {
               return t(e(r));
@@ -99,17 +99,17 @@ function fe() {
       }
       if (r) {
         r = console;
-        var a = r.error, c = typeof Symbol == "function" && Symbol.toStringTag && e[Symbol.toStringTag] || e.constructor.name || "Object";
-        return a.call(
+        var n = r.error, u = typeof Symbol == "function" && Symbol.toStringTag && e[Symbol.toStringTag] || e.constructor.name || "Object";
+        return n.call(
           r,
           "The provided key is an unsupported type %s. This value must be coerced to a string before using it here.",
-          c
+          u
         ), o(e);
       }
     }
-    function f(e) {
+    function c(e) {
       if (e === v) return "<>";
-      if (typeof e == "object" && e !== null && e.$$typeof === M)
+      if (typeof e == "object" && e !== null && e.$$typeof === I)
         return "<...>";
       try {
         var r = t(e);
@@ -118,48 +118,48 @@ function fe() {
         return "<...>";
       }
     }
-    function i() {
-      var e = N.A;
+    function s() {
+      var e = $.A;
       return e === null ? null : e.getOwner();
     }
-    function n() {
+    function a() {
       return Error("react-stack-top-frame");
     }
-    function s(e) {
-      if (Y.call(e, "key")) {
+    function i(e) {
+      if (F.call(e, "key")) {
         var r = Object.getOwnPropertyDescriptor(e, "key").get;
         if (r && r.isReactWarning) return !1;
       }
       return e.key !== void 0;
     }
     function E(e, r) {
-      function a() {
-        I || (I = !0, console.error(
+      function n() {
+        D || (D = !0, console.error(
           "%s: `key` is not a prop. Trying to access it will result in `undefined` being returned. If you need to access the same value within the child component, you should pass it as a different prop. (https://react.dev/link/special-props)",
           r
         ));
       }
-      a.isReactWarning = !0, Object.defineProperty(e, "key", {
-        get: a,
+      n.isReactWarning = !0, Object.defineProperty(e, "key", {
+        get: n,
         configurable: !0
       });
     }
-    function P() {
+    function S() {
       var e = t(this.type);
-      return F[e] || (F[e] = !0, console.error(
+      return W[e] || (W[e] = !0, console.error(
         "Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release."
       )), e = this.props.ref, e !== void 0 ? e : null;
     }
-    function S(e, r, a, c, p, x, C, $) {
-      return a = x.ref, e = {
+    function k(e, r, n, u, p, x, X, M) {
+      return n = x.ref, e = {
         $$typeof: h,
         type: e,
         key: r,
         props: x,
         _owner: p
-      }, (a !== void 0 ? a : null) !== null ? Object.defineProperty(e, "ref", {
+      }, (n !== void 0 ? n : null) !== null ? Object.defineProperty(e, "ref", {
         enumerable: !1,
-        get: P
+        get: S
       }) : Object.defineProperty(e, "ref", { enumerable: !1, value: null }), e._store = {}, Object.defineProperty(e._store, "validated", {
         configurable: !1,
         enumerable: !1,
@@ -174,68 +174,68 @@ function fe() {
         configurable: !1,
         enumerable: !1,
         writable: !0,
-        value: C
+        value: X
       }), Object.defineProperty(e, "_debugTask", {
         configurable: !1,
         enumerable: !1,
         writable: !0,
-        value: $
+        value: M
       }), Object.freeze && (Object.freeze(e.props), Object.freeze(e)), e;
     }
-    function b(e, r, a, c, p, x, C, $) {
-      var u = r.children;
-      if (u !== void 0)
-        if (c)
-          if (ne(u)) {
-            for (c = 0; c < u.length; c++)
-              T(u[c]);
-            Object.freeze && Object.freeze(u);
+    function b(e, r, n, u, p, x, X, M) {
+      var f = r.children;
+      if (f !== void 0)
+        if (u)
+          if (ne(f)) {
+            for (u = 0; u < f.length; u++)
+              T(f[u]);
+            Object.freeze && Object.freeze(f);
           } else
             console.error(
               "React.jsx: Static children should always be an array. You are likely explicitly calling React.jsxs or React.jsxDEV. Use the Babel transform instead."
             );
-        else T(u);
-      if (Y.call(r, "key")) {
-        u = t(e);
+        else T(f);
+      if (F.call(r, "key")) {
+        f = t(e);
         var _ = Object.keys(r).filter(function(ae) {
           return ae !== "key";
         });
-        c = 0 < _.length ? "{key: someKey, " + _.join(": ..., ") + ": ...}" : "{key: someKey}", U[u + c] || (_ = 0 < _.length ? "{" + _.join(": ..., ") + ": ...}" : "{}", console.error(
+        u = 0 < _.length ? "{key: someKey, " + _.join(": ..., ") + ": ...}" : "{key: someKey}", z[f + u] || (_ = 0 < _.length ? "{" + _.join(": ..., ") + ": ...}" : "{}", console.error(
           `A props object containing a "key" prop is being spread into JSX:
   let props = %s;
   <%s {...props} />
 React keys must be passed directly to JSX without using spread:
   let props = %s;
   <%s key={someKey} {...props} />`,
-          c,
           u,
+          f,
           _,
-          u
-        ), U[u + c] = !0);
+          f
+        ), z[f + u] = !0);
       }
-      if (u = null, a !== void 0 && (l(a), u = "" + a), s(r) && (l(r.key), u = "" + r.key), "key" in r) {
-        a = {};
-        for (var L in r)
-          L !== "key" && (a[L] = r[L]);
-      } else a = r;
-      return u && E(
-        a,
+      if (f = null, n !== void 0 && (l(n), f = "" + n), i(r) && (l(r.key), f = "" + r.key), "key" in r) {
+        n = {};
+        for (var Y in r)
+          Y !== "key" && (n[Y] = r[Y]);
+      } else n = r;
+      return f && E(
+        n,
         typeof e == "function" ? e.displayName || e.name || "Unknown" : e
-      ), S(
+      ), k(
         e,
-        u,
+        f,
         x,
         p,
-        i(),
-        a,
-        C,
-        $
+        s(),
+        n,
+        X,
+        M
       );
     }
     function T(e) {
       typeof e == "object" && e !== null && e.$$typeof === h && e._store && (e._store.validated = 1);
     }
-    var R = oe, h = Symbol.for("react.transitional.element"), k = Symbol.for("react.portal"), v = Symbol.for("react.fragment"), A = Symbol.for("react.strict_mode"), j = Symbol.for("react.profiler"), G = Symbol.for("react.consumer"), H = Symbol.for("react.context"), Z = Symbol.for("react.forward_ref"), K = Symbol.for("react.suspense"), Q = Symbol.for("react.suspense_list"), ee = Symbol.for("react.memo"), M = Symbol.for("react.lazy"), re = Symbol.for("react.activity"), te = Symbol.for("react.client.reference"), N = R.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, Y = Object.prototype.hasOwnProperty, ne = Array.isArray, y = console.createTask ? console.createTask : function() {
+    var R = oe, h = Symbol.for("react.transitional.element"), A = Symbol.for("react.portal"), v = Symbol.for("react.fragment"), O = Symbol.for("react.strict_mode"), j = Symbol.for("react.profiler"), N = Symbol.for("react.consumer"), C = Symbol.for("react.context"), Z = Symbol.for("react.forward_ref"), Q = Symbol.for("react.suspense"), K = Symbol.for("react.suspense_list"), ee = Symbol.for("react.memo"), I = Symbol.for("react.lazy"), re = Symbol.for("react.activity"), te = Symbol.for("react.client.reference"), $ = R.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, F = Object.prototype.hasOwnProperty, ne = Array.isArray, L = console.createTask ? console.createTask : function() {
       return null;
     };
     R = {
@@ -243,40 +243,40 @@ React keys must be passed directly to JSX without using spread:
         return e();
       }
     };
-    var I, F = {}, D = R["react-stack-bottom-frame"].bind(
+    var D, W = {}, U = R["react-stack-bottom-frame"].bind(
       R,
-      n
-    )(), W = y(f(n)), U = {};
-    g.Fragment = v, g.jsx = function(e, r, a, c, p) {
-      var x = 1e4 > N.recentlyCreatedOwnerStacks++;
+      a
+    )(), B = L(c(a)), z = {};
+    P.Fragment = v, P.jsx = function(e, r, n, u, p) {
+      var x = 1e4 > $.recentlyCreatedOwnerStacks++;
       return b(
         e,
         r,
-        a,
+        n,
         !1,
-        c,
+        u,
         p,
-        x ? Error("react-stack-top-frame") : D,
-        x ? y(f(e)) : W
+        x ? Error("react-stack-top-frame") : U,
+        x ? L(c(e)) : B
       );
-    }, g.jsxs = function(e, r, a, c, p) {
-      var x = 1e4 > N.recentlyCreatedOwnerStacks++;
+    }, P.jsxs = function(e, r, n, u, p) {
+      var x = 1e4 > $.recentlyCreatedOwnerStacks++;
       return b(
         e,
         r,
-        a,
+        n,
         !0,
-        c,
+        u,
         p,
-        x ? Error("react-stack-top-frame") : D,
-        x ? y(f(e)) : W
+        x ? Error("react-stack-top-frame") : U,
+        x ? L(c(e)) : B
       );
     };
-  }()), g;
+  }()), P;
 }
-var J;
+var q;
 function me() {
-  return J || (J = 1, process.env.NODE_ENV === "production" ? O.exports = ue() : O.exports = fe()), O.exports;
+  return q || (q = 1, process.env.NODE_ENV === "production" ? y.exports = ue() : y.exports = fe()), y.exports;
 }
 var de = me();
 const m = Object.freeze({
@@ -290,47 +290,51 @@ const m = Object.freeze({
   xl: t,
   sm: o,
   md: l,
-  lg: f,
-  xs: i,
-  ...n
+  lg: c,
+  xs: s,
+  ...a
 } = {}) => ({
-  xs: `(min-width: ${d(i ?? m.xs)}px)`,
+  xs: `(min-width: ${d(s ?? m.xs)}px)`,
   sm: `(min-width: ${d(o ?? m.sm)}px)`,
   md: `(min-width: ${d(l ?? m.md)}px)`,
-  lg: `(min-width: ${d(f ?? m.lg)}px)`,
+  lg: `(min-width: ${d(c ?? m.lg)}px)`,
   xl: `(min-width: ${d(t ?? m.xl)}px)`,
   "2xl": `(min-width: ${d(
-    n["2xl"] ?? m["2xl"]
+    a["2xl"] ?? m["2xl"]
   )}px)`
 }), Ee = ({
   xl: t,
   sm: o,
   md: l,
-  lg: f,
-  xs: i,
-  ...n
+  lg: c,
+  xs: s,
+  ...a
 } = {}) => ({
-  xs: `(max-width: ${d(i ?? m.xs)}px)`,
+  xs: `(max-width: ${d(s ?? m.xs)}px)`,
   sm: `(max-width: ${d(o ?? m.sm)}px)`,
   md: `(max-width: ${d(l ?? m.md)}px)`,
-  lg: `(max-width: ${d(f ?? m.lg)}px)`,
+  lg: `(max-width: ${d(c ?? m.lg)}px)`,
   xl: `(max-width: ${d(t ?? m.xl)}px)`,
   "2xl": `(max-width: ${d(
-    n["2xl"] ?? m["2xl"]
+    a["2xl"] ?? m["2xl"]
   )}px)`
-}), V = (t) => {
+}), G = (t) => {
   const [o, l] = le(
     t.map(() => !1)
   );
   return ce(
     () => {
-      const f = t.map((s) => window.matchMedia(s)), i = () => f.map((s) => s.matches), n = () => l(i());
-      return n(), f.forEach((s) => s.addEventListener ? s.addEventListener("change", n) : s.addListener(n)), () => f.forEach((s) => s.removeEventListener ? s.removeEventListener("change", n) : s.removeListener(n));
+      const c = t.map((i) => window.matchMedia(i)), s = () => c.map((i) => i.matches), a = () => l(s());
+      return a(), c.forEach((i) => {
+        i.addEventListener ? i.addEventListener("change", a) : i.addListener(a);
+      }), () => c.forEach((i) => {
+        i.removeEventListener ? i.removeEventListener("change", a) : i.removeListener(a);
+      });
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     t
   ), o;
-}, pe = {
+}, Re = {
   min: {
     isXs: !1,
     isSm: !1,
@@ -347,11 +351,9 @@ const m = Object.freeze({
     isXl: !1,
     is2Xl: !1
   }
-}, q = se(
-  pe
-);
+}, H = se(void 0);
 function ve(t) {
-  const o = ie(q);
+  const o = ie(H);
   if (o === void 0)
     throw new Error(
       "useBreakPoint must be used within a BreakpointProvider. Wrap your app in a BreakpointProvider"
@@ -359,56 +361,52 @@ function ve(t) {
   return t ? o[t] : o;
 }
 const _e = ({ children: t, breakpointOverrides: o, mediaQueryMethods: l }) => {
-  const f = X(
+  const c = w(
     () => l?.min ? l.min(o) : xe(o),
     [o, l]
-  ), i = X(
+  ), s = w(
     () => l?.max ? l.max(o) : Ee(o),
     [o, l]
-  ), [n, s, E, P, S, b] = V(
-    Object.values(f)
-  ), [T, R, h, k, v, A] = V(
-    Object.values(i)
-  ), j = X(
+  ), a = w(() => Object.values(c), [c]), i = w(() => Object.values(s), [s]), [E, S, k, b, T, R] = G(a), [h, A, v, O, j, N] = G(i), C = w(
     () => ({
       min: {
-        isXs: n,
-        isSm: s,
-        isMd: E,
-        isLg: P,
-        isXl: S,
-        is2Xl: b
+        isXs: E,
+        isSm: S,
+        isMd: k,
+        isLg: b,
+        isXl: T,
+        is2Xl: R
       },
       max: {
-        isXs: T,
-        isSm: R,
-        isMd: h,
-        isLg: k,
-        isXl: v,
-        is2Xl: A
+        isXs: h,
+        isSm: A,
+        isMd: v,
+        isLg: O,
+        isXl: j,
+        is2Xl: N
       }
     }),
     [
+      N,
+      O,
+      v,
       A,
-      k,
+      j,
       h,
       R,
-      v,
-      T,
       b,
-      P,
-      E,
-      s,
+      k,
       S,
-      n
+      T,
+      E
     ]
   );
-  return /* @__PURE__ */ de.jsx(q.Provider, { value: j, children: t });
+  return /* @__PURE__ */ de.jsx(H.Provider, { value: C, children: t });
 };
 export {
   _e as BreakpointProvider,
   m as DEFAULT_BREAK_POINTS,
-  pe as defaultBreakPointContext,
+  Re as defaultBreakPointContext,
   d as replacePxInString,
   ve as useBreakPoint
 };
